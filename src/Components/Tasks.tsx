@@ -1,5 +1,5 @@
 
-const Tasks = () => {
+const Tasks = ({id: string, todo:string}) => {
     interface StringObject {
         [key: string]: string;
     }
@@ -27,7 +27,7 @@ const Tasks = () => {
     }
     return (
         <div style={mainBox}>
-            <p>This is Main box Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod, sunt nam! Est iste, suscipit provident dignissimos harum quidem obcaecati placeat, ipsa perspiciatis aut nam repellendus! Molestias inventore aliquam cum modi!</p>
+            <p>{todo}</p>
             <button style={buttonStyle}>Edit</button>
             <button style={buttonStyle}>Delete</button>
         </div>

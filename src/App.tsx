@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Search from './Components/Search';
 import Tasks from './Components/Tasks';
 
 function App() {
+
+  type ObjectType = {
+    id: number;
+    todo: string;
+  };
+
+  const [data, setData] = useState<ObjectType[]>([]);
+
+  useEffect(() => {
+    // Step 3: Retrieve existing data from Local Storage when the component mounts
+    const storedData = localStorage.getItem('myTodo');
+    if (storedData) {
+      setData(JSON.parse(storedData));
+    }
+  }, []);
+
   return (
     <>
       <center>
@@ -11,7 +27,11 @@ function App() {
       </center>
       <Search />
       <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: "1rem" }}>
-        <Tasks />
+        {
+          data ? data.map((e) => (
+            <Tasks id={e.id} todo={e.todo} />
+          )) : null
+        }
       </div>
     </>
   );
