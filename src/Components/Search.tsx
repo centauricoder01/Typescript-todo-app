@@ -30,18 +30,42 @@ const Search = () => {
         borderRadius: "2px",
         cursor: "pointer"
     }
+    type ObjectType = {
+        id: number;
+        todo: string;
+    };
+
+    const [localvalue, setLocalvalue] = useState<ObjectType[]>([]);
 
     const [input, setInput] = useState<string>('');
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInput(e.target.value)
     }
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) =>{
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(input)
+        if (input.trim() === '') {
+            return;
+        }
+
+        // Step 4: Update the data array with the new input value
+        const newObject: ObjectType = {
+            id: Date.now(),
+            todo: input,
+        };
+
+        const updatedData = [...localvalue, newObject];
+
+        localStorage.setItem('myTodo', JSON.stringify(updatedData));
+
+        setLocalvalue(updatedData);
+        setInput('');
 
     }
+
+
+
     return (
         <>
             <form style={formStyle} onSubmit={handleSubmit} >
