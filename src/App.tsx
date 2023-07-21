@@ -12,14 +12,6 @@ function App() {
       <Search />
       <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: "1rem" }}>
         <Tasks />
-        <Tasks />
-        <Tasks />
-        <Tasks />
-        <Tasks />
-        <Tasks />
-        <Tasks />
-        <Tasks />
-        <Tasks />
       </div>
     </>
   );

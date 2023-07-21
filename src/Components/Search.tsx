@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Search = () => {
 
@@ -30,11 +30,23 @@ const Search = () => {
         borderRadius: "2px",
         cursor: "pointer"
     }
+
+    const [input, setInput] = useState<string>('');
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
+        setInput(e.target.value)
+    }
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) =>{
+        e.preventDefault();
+        console.log(input)
+
+    }
     return (
         <>
-            <form style={formStyle}>
-                <input type="text" style={inputStyle} placeholder='Enter Your task' />
-                <button style={buttonStyle}>Add Task.</button>
+            <form style={formStyle} onSubmit={handleSubmit} >
+                <input type="text" style={inputStyle} placeholder='Enter Your task' value={input} onChange={handleChange} />
+                <button type='submit' style={buttonStyle} >Add Task.</button>
             </form>
         </>
     )
